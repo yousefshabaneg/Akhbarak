@@ -34,6 +34,13 @@ class MyApp extends StatelessWidget {
         builder: (context, state) => MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
+            inputDecorationTheme: InputDecorationTheme(
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: new BorderSide(color: Colors.grey),
+              ),
+              hintStyle: TextStyle(color: Colors.black54),
+            ),
             textTheme: TextTheme(
                 bodyText1: TextStyle(
               fontSize: 18,
@@ -67,6 +74,15 @@ class MyApp extends StatelessWidget {
             ),
           ),
           darkTheme: ThemeData(
+            inputDecorationTheme: InputDecorationTheme(
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: new BorderSide(color: Colors.deepOrange),
+              ),
+              hintStyle: TextStyle(
+                color: Colors.white.withOpacity(0.7),
+              ),
+            ),
             scaffoldBackgroundColor: HexColor('333739'),
             primarySwatch: Colors.deepOrange,
             appBarTheme: AppBarTheme(
