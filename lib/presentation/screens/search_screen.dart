@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/business_logic/news_cubit/NewsCubit.dart';
 import 'package:news_app/business_logic/news_cubit/NewsStates.dart';
 import 'package:news_app/shared/components/components.dart';
@@ -21,6 +22,16 @@ class SearchScreen extends StatelessWidget {
         var isDark = cubit.isDark;
         return Scaffold(
           appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              cubit.isRtl ? 'أخبارك - Akhbarak' : 'Akhbarak - أخبارك',
+              style: GoogleFonts.cairo(
+                textStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepOrange,
+                ),
+              ),
+            ),
             leading: IconButton(
               icon: Icon(
                 Icons.arrow_back,
