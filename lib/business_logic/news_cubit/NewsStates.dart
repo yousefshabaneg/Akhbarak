@@ -37,3 +37,23 @@ class NewsHealthErrorState extends NewsStates {
 
   NewsHealthErrorState(this.error);
 }
+
+class NewsSearchedLoadingState extends NewsStates {}
+
+class NewsSearchedLoadedState extends NewsStates {}
+
+class NewsSearchedErrorState extends NewsStates {
+  final String error;
+
+  NewsSearchedErrorState(this.error);
+}
+
+class NewsGeneralLoadingState extends NewsStates {}
+
+class NewsGeneralLoadedState extends NewsStates {}
+
+class NewsGeneralErrorState extends NewsStates {
+  final String error;
+
+  NewsGeneralErrorState(this.error);
+}

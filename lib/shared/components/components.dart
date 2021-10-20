@@ -60,6 +60,7 @@ Widget buildNewsWithConditionalBuilder({required List articles}) =>
       condition: articles.length > 0,
       builder: (context) => ListView.separated(
         physics: BouncingScrollPhysics(),
+        shrinkWrap: true,
         itemBuilder: (context, index) =>
             buildArticleItem(articles[index], context),
         separatorBuilder: (context, index) => dividerSeparator(),
@@ -69,3 +70,41 @@ Widget buildNewsWithConditionalBuilder({required List articles}) =>
         child: CircularProgressIndicator(),
       ),
     );
+
+//<editor-fold desc='Default FormField'>
+Widget defaultFormField({
+  required TextEditingController controller,
+  required TextInputType keyboardType,
+  String? Function(String?)? validate,
+  VoidCallback? onPressed,
+  Function(String?)? onChanged,
+  required IconData prefixIcon,
+  String? label,
+  IconData? suffixIcon,
+  bool isPassword = false,
+}) =>
+    TextFormField(
+      controller: controller,
+      keyboardType: keyboardType,
+      obscureText: isPassword,
+      decoration: InputDecoration(
+        labelText: label,
+        border: OutlineInputBorder(),
+        prefixIcon: Icon(prefixIcon),
+        suffixIcon: suffixIcon != null
+            ? IconButton(
+                onPressed: onPressed,
+                icon: Icon(
+                  suffixIcon,
+                ),
+              )
+            : null,
+      ),
+      validator: validate,
+      onChanged: onChanged,
+      onTap: onPressed,
+    );
+//</editor-fold>
+
+void navigateTo(context, widget) =>
+    Navigator.push(context, MaterialPageRoute(builder: (context) => widget));

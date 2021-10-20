@@ -24,4 +24,16 @@ class DioHelper {
       return [];
     }
   }
+
+  static Future<List<dynamic>> getSearchedData(
+      {required Map<String, dynamic> query}) async {
+    try {
+      Response response =
+          await dio.get('v2/everything', queryParameters: query);
+      return response.data['articles'];
+    } catch (e) {
+      print(e.toString());
+      return [];
+    }
+  }
 }

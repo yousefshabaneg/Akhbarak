@@ -4,6 +4,8 @@ import 'package:news_app/business_logic/news_cubit/NewsCubit.dart';
 import 'package:news_app/business_logic/news_cubit/NewsStates.dart';
 import 'package:news_app/data/api/news_api.dart';
 import 'package:news_app/data/repository/news_repository.dart';
+import 'package:news_app/presentation/screens/search_screen.dart';
+import 'package:news_app/shared/components/components.dart';
 
 class NewsLayout extends StatelessWidget {
   const NewsLayout({Key? key}) : super(key: key);
@@ -19,7 +21,10 @@ class NewsLayout extends StatelessWidget {
             title: Text('News App'),
             actions: [
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    NewsCubit.get(context).getGeneralArticles();
+                    navigateTo(context, SearchScreen());
+                  },
                   icon: Icon(
                     Icons.search,
                   )),

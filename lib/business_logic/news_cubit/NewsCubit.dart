@@ -13,6 +13,8 @@ class NewsCubit extends Cubit<NewsStates> {
   List<Article> technologyArticles = [];
   List<Article> sportsArticles = [];
   List<Article> healthArticles = [];
+  List<Article> generalArticles = [];
+  List<Article> searchedArticles = [];
 
   NewsCubit() : super(NewsInitialState());
 
@@ -64,6 +66,30 @@ class NewsCubit extends Cubit<NewsStates> {
     }).catchError((error) {
       print(error.toString());
       emit(NewsHealthErrorState(error.toString()));
+    });
+  }
+
+  void getGeneralArticles() {
+    emit(NewsGeneralLoadingState());
+    NewsRepository.getAllArticles(category: 'general').then((articles) {
+      setImageIfNull(articles);
+      healthArticles = articles;
+      emit(NewsGeneralLoadedState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(NewsGeneralErrorState(error.toString()));
+    });
+  }
+
+  void getSearchedArticles(String? keyWord) {
+    emit(NewsSearchedLoadingState());
+    NewsRepository.getSearchedArticles(keyWord!).then((articles) {
+      setImageIfNull(articles);
+      searchedArticles = articles;
+      emit(NewsSearchedLoadedState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(NewsSearchedErrorState(error.toString()));
     });
   }
 
