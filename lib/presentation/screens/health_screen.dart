@@ -4,14 +4,14 @@ import 'package:news_app/business_logic/news_cubit/NewsCubit.dart';
 import 'package:news_app/business_logic/news_cubit/NewsStates.dart';
 import 'package:news_app/shared/components/components.dart';
 
-class SportsScreen extends StatelessWidget {
+class HealthScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NewsCubit, NewsStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var sportsArticles = NewsCubit.get(context).sportsArticles;
-        return buildNewsWithConditionalBuilder(articles: sportsArticles);
+        var healthArticles = NewsCubit.get(context).healthArticles;
+        return buildNewsWithConditionalBuilder(articles: healthArticles);
       },
     );
   }
