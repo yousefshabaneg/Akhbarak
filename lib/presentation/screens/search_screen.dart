@@ -13,7 +13,10 @@ class SearchScreen extends StatelessWidget {
     return BlocConsumer<NewsCubit, NewsStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var searchedArticles = cubit.searchedArticles;
+        var searchedArticles =
+            cubit.searchedArticles.length == 0 && searchController.text.isEmpty
+                ? cubit.generalArticles
+                : cubit.searchedArticles;
         var isRtl = cubit.isRtl;
         var isDark = cubit.isDark;
         return Scaffold(
@@ -24,7 +27,7 @@ class SearchScreen extends StatelessWidget {
                 color: cubit.isDark ? Colors.white : Colors.black,
               ),
               onPressed: () {
-                cubit.searchedArticles = [];
+                cubit.searchedArticles = cubit.generalArticles.toList();
                 Navigator.of(context).pop();
               },
             ),

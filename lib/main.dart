@@ -81,6 +81,18 @@ class MyApp extends StatelessWidget {
               unselectedItemColor: Colors.black.withOpacity(0.7),
               elevation: 20,
               backgroundColor: Colors.white,
+              selectedLabelStyle: GoogleFonts.cairo(
+                textStyle: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              unselectedLabelStyle: GoogleFonts.cairo(
+                textStyle: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
           ),
           darkTheme: ThemeData(
@@ -117,6 +129,18 @@ class MyApp extends StatelessWidget {
               unselectedItemColor: Colors.white.withOpacity(0.7),
               elevation: 20,
               backgroundColor: HexColor('333739'),
+              selectedLabelStyle: GoogleFonts.cairo(
+                textStyle: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              unselectedLabelStyle: GoogleFonts.cairo(
+                textStyle: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
             textTheme: TextTheme(
               bodyText1: GoogleFonts.cairo(
