@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:news_app/business_logic/news_cubit/NewsCubit.dart';
 import 'package:news_app/business_logic/news_cubit/NewsStates.dart';
@@ -13,19 +14,23 @@ void main() async {
   DioHelper.init();
   await CashHelper.init();
   bool? isDark = CashHelper.getBool(key: 'isDark');
+  bool? isRtl = CashHelper.getBoolRtl(key: 'isRtl');
 
-  runApp(MyApp(isDark));
+  runApp(MyApp(isDark, isRtl));
 }
 
 class MyApp extends StatelessWidget {
   final bool? isDark;
-  MyApp(this.isDark);
+  final bool? isRtl;
+  MyApp(this.isDark, this.isRtl);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) => NewsCubit()
         ..changeAppMode(fromShared: isDark)
+        ..changeAppDirection(fromShared: isRtl)
+        ..getGeneralArticles()
         ..getTechnologyArticles()
         ..getSportsArticles()
         ..getHealthArticles(),
@@ -37,16 +42,21 @@ class MyApp extends StatelessWidget {
             inputDecorationTheme: InputDecorationTheme(
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
-                borderSide: new BorderSide(color: Colors.grey),
+                borderSide: new BorderSide(color: Colors.deepOrange),
               ),
-              hintStyle: TextStyle(color: Colors.black54),
+              hintStyle: TextStyle(
+                color: Colors.black54,
+              ),
             ),
             textTheme: TextTheme(
-                bodyText1: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            )),
+              bodyText1: GoogleFonts.cairo(
+                textStyle: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+              ),
+            ),
             primarySwatch: Colors.deepOrange,
             scaffoldBackgroundColor: Colors.white,
             appBarTheme: AppBarTheme(
@@ -68,7 +78,7 @@ class MyApp extends StatelessWidget {
             bottomNavigationBarTheme: BottomNavigationBarThemeData(
               type: BottomNavigationBarType.fixed,
               selectedItemColor: Colors.deepOrange,
-              unselectedItemColor: Colors.grey,
+              unselectedItemColor: Colors.black.withOpacity(0.7),
               elevation: 20,
               backgroundColor: Colors.white,
             ),
@@ -104,20 +114,27 @@ class MyApp extends StatelessWidget {
             bottomNavigationBarTheme: BottomNavigationBarThemeData(
               type: BottomNavigationBarType.fixed,
               selectedItemColor: Colors.deepOrange,
-              unselectedItemColor: Colors.grey,
+              unselectedItemColor: Colors.white.withOpacity(0.7),
               elevation: 20,
               backgroundColor: HexColor('333739'),
             ),
             textTheme: TextTheme(
-                bodyText1: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            )),
+              bodyText1: GoogleFonts.cairo(
+                textStyle: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ),
           themeMode:
               NewsCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
-          home: NewsLayout(),
+          home: Directionality(
+              textDirection: NewsCubit.get(context).isRtl
+                  ? TextDirection.rtl
+                  : TextDirection.ltr,
+              child: NewsLayout()),
         ),
       ),
     );

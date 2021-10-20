@@ -15,4 +15,13 @@ class CashHelper {
   static bool? getBool({required String key}) {
     return sharedPreferences.getBool(key);
   }
+
+  static Future<bool> setBoolRtl(
+      {required String key, required bool value}) async {
+    return await sharedPreferences.setBool(key, value);
+  }
+
+  static bool? getBoolRtl({required String key}) {
+    return sharedPreferences.getBool(key);
+  }
 }

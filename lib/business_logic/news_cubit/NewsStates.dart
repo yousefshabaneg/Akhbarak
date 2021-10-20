@@ -6,6 +6,8 @@ class NewsInitialState extends NewsStates {}
 
 class AppChangeModeState extends NewsStates {}
 
+class AppChangeDirectionState extends NewsStates {}
+
 class NewsBottomNavState extends NewsStates {}
 
 class NewsTechnologyLoadingState extends NewsStates {}

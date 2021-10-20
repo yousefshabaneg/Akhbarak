@@ -2,4 +2,4 @@ String baseUrl = 'https://newsapi.org/';
 
 String noImage = 'https://bit.ly/3vsQoCs';
 
-String apiKey = '44758598e7b74dbfbbab3872dc3fc7e5';
+String apiKey = '9d5b288360ee4b7a976bfdd2ef9842d8';

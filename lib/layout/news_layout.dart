@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/business_logic/news_cubit/NewsCubit.dart';
 import 'package:news_app/business_logic/news_cubit/NewsStates.dart';
 import 'package:news_app/data/api/news_api.dart';
@@ -18,11 +19,27 @@ class NewsLayout extends StatelessWidget {
         var cubit = NewsCubit.get(context);
         return Scaffold(
           appBar: AppBar(
-            title: Text('News App'),
+            centerTitle: true,
+            leading: IconButton(
+              onPressed: () {
+                cubit.changeAppDirection();
+              },
+              icon: Icon(
+                Icons.change_circle_outlined,
+              ),
+            ),
+            title: Text(
+              cubit.isRtl ? 'أخبارك - Akhbarak' : 'Akhbarak - أخبارك',
+              style: GoogleFonts.cairo(
+                textStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepOrange,
+                ),
+              ),
+            ),
             actions: [
               IconButton(
                   onPressed: () {
-                    NewsCubit.get(context).getGeneralArticles();
                     navigateTo(context, SearchScreen());
                   },
                   icon: Icon(
@@ -34,14 +51,32 @@ class NewsLayout extends StatelessWidget {
                   },
                   icon: Icon(
                     Icons.brightness_4_rounded,
-                  ))
+                  )),
             ],
           ),
           body: cubit.screens[cubit.currentIndex],
-          bottomNavigationBar: BottomNavigationBar(
-            items: cubit.bottomItems,
-            currentIndex: cubit.currentIndex,
-            onTap: (index) => cubit.changeBottomNavBar(index),
+          bottomNavigationBar: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(30), topLeft: Radius.circular(30)),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black54, spreadRadius: 0, blurRadius: 5),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30.0),
+                topRight: Radius.circular(30.0),
+              ),
+              child: BottomNavigationBar(
+                items: cubit.isRtl
+                    ? cubit.bottomItemsArabic
+                    : cubit.bottomItemsEnglish,
+                currentIndex: cubit.currentIndex,
+                onTap: (index) => cubit.changeBottomNavBar(index),
+              ),
+            ),
           ),
         );
       },

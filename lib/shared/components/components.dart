@@ -1,6 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/business_logic/news_cubit/NewsCubit.dart';
 import 'package:news_app/data/models/articles.dart';
 import 'package:news_app/presentation/screens/web_view.dart';
 
@@ -43,6 +44,7 @@ Widget buildArticleItem(Article article, context) => InkWell(
                     ),
                     Text(
                       article.publishedAt,
+                      textDirection: TextDirection.ltr,
                       style: TextStyle(
                         color: Colors.grey,
                       ),
@@ -57,7 +59,7 @@ Widget buildArticleItem(Article article, context) => InkWell(
     );
 
 Widget dividerSeparator() => Divider(
-      thickness: 0.8,
+      thickness: 0.6,
       color: Colors.grey[200],
     );
 
@@ -92,10 +94,13 @@ Widget defaultFormField({
   String? hint,
   IconData? suffixIcon,
   bool isPassword = false,
+  required bool isRtl,
   Color color = Colors.black,
   Color textColor = Colors.white,
 }) =>
     TextFormField(
+      textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
+      textAlign: isRtl ? TextAlign.right : TextAlign.left,
       controller: controller,
       style: TextStyle(
         color: textColor,

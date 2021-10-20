@@ -14,14 +14,28 @@ class SearchScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         var searchedArticles = cubit.searchedArticles;
+        var isRtl = cubit.isRtl;
+        var isDark = cubit.isDark;
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: cubit.isDark ? Colors.white : Colors.black,
+              ),
+              onPressed: () {
+                cubit.searchedArticles = [];
+                Navigator.of(context).pop();
+              },
+            ),
+          ),
           body: SingleChildScrollView(
             child: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: defaultFormField(
+                    isRtl: isRtl,
                     onChanged: (keyWord) {
                       NewsCubit.get(context).getSearchedArticles(keyWord);
                     },
@@ -29,9 +43,11 @@ class SearchScreen extends StatelessWidget {
                     controller: searchController,
                     keyboardType: TextInputType.text,
                     prefixIcon: Icons.search,
-                    color: cubit.isDark ? Colors.white : Colors.black,
-                    textColor: cubit.isDark ? Colors.white : Colors.black,
-                    hint: 'Find news around the world',
+                    color: Colors.deepOrange,
+                    textColor: isDark ? Colors.white : Colors.black,
+                    hint: isRtl
+                        ? '... ابحث عن المحتوي عبر العالم'
+                        : 'Find news around the world .. ',
                     borderRadius: 20,
                   ),
                 ),
