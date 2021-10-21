@@ -7,6 +7,7 @@ import 'package:news_app/data/api/news_api.dart';
 import 'package:news_app/data/repository/news_repository.dart';
 import 'package:news_app/presentation/screens/search_screen.dart';
 import 'package:news_app/shared/components/components.dart';
+import 'package:news_app/shared/constants/my_colors.dart';
 
 class NewsLayout extends StatelessWidget {
   const NewsLayout({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class NewsLayout extends StatelessWidget {
               style: GoogleFonts.cairo(
                 textStyle: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.deepOrange,
+                  color: MyColors.primary,
                 ),
               ),
             ),

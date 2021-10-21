@@ -1,54 +1,84 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/business_logic/news_cubit/NewsCubit.dart';
 import 'package:news_app/data/models/articles.dart';
 import 'package:news_app/presentation/screens/web_view.dart';
+import 'package:news_app/shared/constants/my_colors.dart';
 
 Widget buildArticleItem(Article article, context) => InkWell(
       onTap: () {
         navigateTo(context, WebViewScreen(url: article.url));
       },
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 120,
-              height: 120,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      article.urlToImage!,
-                    ),
-                    fit: BoxFit.cover,
-                  )),
+            Column(
+              children: [
+                SizedBox(
+                  height: 5,
+                ),
+                Container(
+                  width: 120,
+                  height: 120,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          article.urlToImage!,
+                        ),
+                        fit: BoxFit.cover,
+                      )),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  article.publishedAt,
+                  textDirection: TextDirection.ltr,
+                  style: TextStyle(
+                    color: MyColors.dark,
+                  ),
+                ),
+              ],
             ),
             SizedBox(
               width: 20,
             ),
             Expanded(
               child: Container(
-                height: 120,
+                height: 155,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text(
+                      article.title,
+                      style: Theme.of(context).textTheme.bodyText1,
+                      textDirection: TextDirection.rtl,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                     Expanded(
-                      child: Text(
-                        article.title,
-                        style: Theme.of(context).textTheme.bodyText1,
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
+                      child: TextButton(
+                        child: Text(
+                          NewsCubit.get(context).isRtl
+                              ? 'إقرأ المزيد'
+                              : 'Read More',
+                          style: GoogleFonts.cairo(
+                            textStyle: TextStyle(
+                              color: MyColors.primaryColor.shade900,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        onPressed: () {
+                          navigateTo(context, WebViewScreen(url: article.url));
+                        },
                       ),
                     ),
-                    Text(
-                      article.publishedAt,
-                      textDirection: TextDirection.ltr,
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    )
                   ],
                 ),
               ),
@@ -59,8 +89,8 @@ Widget buildArticleItem(Article article, context) => InkWell(
     );
 
 Widget dividerSeparator() => Divider(
-      thickness: 0.6,
-      color: Colors.grey[200],
+      thickness: 0.3,
+      color: MyColors.dark,
     );
 
 Widget buildNewsWithConditionalBuilder(

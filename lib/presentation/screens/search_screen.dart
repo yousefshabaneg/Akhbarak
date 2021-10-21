@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/business_logic/news_cubit/NewsCubit.dart';
 import 'package:news_app/business_logic/news_cubit/NewsStates.dart';
 import 'package:news_app/shared/components/components.dart';
+import 'package:news_app/shared/constants/my_colors.dart';
 
 class SearchScreen extends StatelessWidget {
   var searchController = TextEditingController();
@@ -24,18 +25,19 @@ class SearchScreen extends StatelessWidget {
           appBar: AppBar(
             centerTitle: true,
             title: Text(
-              cubit.isRtl ? 'أخبارك - Akhbarak' : 'Akhbarak - أخبارك',
+              'Akhbarak - أخبارك',
               style: GoogleFonts.cairo(
                 textStyle: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.deepOrange,
+                  color: MyColors.primary,
                 ),
               ),
             ),
             leading: IconButton(
               icon: Icon(
                 Icons.arrow_back,
-                color: cubit.isDark ? Colors.white : Colors.black,
+                color:
+                    cubit.isDark ? MyColors.primaryColor : MyColors.secondary,
               ),
               onPressed: () {
                 cubit.searchedArticles = cubit.generalArticles.toList();
@@ -51,13 +53,13 @@ class SearchScreen extends StatelessWidget {
                   child: defaultFormField(
                     isRtl: isRtl,
                     onChanged: (keyWord) {
-                      NewsCubit.get(context).getSearchedArticles(keyWord);
+                      cubit.getSearchedArticles(keyWord);
                     },
                     onPressed: () {},
                     controller: searchController,
                     keyboardType: TextInputType.text,
                     prefixIcon: Icons.search,
-                    color: Colors.deepOrange,
+                    color: MyColors.primary,
                     textColor: isDark ? Colors.white : Colors.black,
                     hint: isRtl
                         ? '... ابحث عن المحتوي عبر العالم'

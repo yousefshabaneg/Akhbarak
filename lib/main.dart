@@ -8,6 +8,7 @@ import 'package:news_app/business_logic/news_cubit/NewsStates.dart';
 import 'package:news_app/data/api/news_api.dart';
 import 'package:news_app/data/cashe_helper.dart';
 import 'package:news_app/layout/news_layout.dart';
+import 'package:news_app/shared/constants/my_colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,22 +43,25 @@ class MyApp extends StatelessWidget {
             inputDecorationTheme: InputDecorationTheme(
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
-                borderSide: new BorderSide(color: Colors.deepOrange),
+                borderSide: new BorderSide(color: MyColors.primary),
               ),
-              hintStyle: TextStyle(
-                color: Colors.black54,
+              hintStyle: GoogleFonts.cairo(
+                textStyle: TextStyle(
+                  color: MyColors.dark,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
             textTheme: TextTheme(
               bodyText1: GoogleFonts.cairo(
                 textStyle: TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  color: MyColors.secondary,
                 ),
               ),
             ),
-            primarySwatch: Colors.deepOrange,
+            primarySwatch: MyColors.primaryColor,
             scaffoldBackgroundColor: Colors.white,
             appBarTheme: AppBarTheme(
               backgroundColor: Colors.white,
@@ -67,18 +71,18 @@ class MyApp extends StatelessWidget {
               ),
               elevation: 0,
               titleTextStyle: TextStyle(
-                color: Colors.black,
+                color: MyColors.secondary,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
               iconTheme: IconThemeData(
-                color: Colors.black,
+                color: MyColors.secondary,
               ),
             ),
             bottomNavigationBarTheme: BottomNavigationBarThemeData(
               type: BottomNavigationBarType.fixed,
-              selectedItemColor: Colors.deepOrange,
-              unselectedItemColor: Colors.black.withOpacity(0.7),
+              selectedItemColor: MyColors.primary,
+              unselectedItemColor: MyColors.dark,
               elevation: 20,
               backgroundColor: Colors.white,
               selectedLabelStyle: GoogleFonts.cairo(
@@ -99,18 +103,22 @@ class MyApp extends StatelessWidget {
             inputDecorationTheme: InputDecorationTheme(
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
-                borderSide: new BorderSide(color: Colors.deepOrange),
+                borderSide: new BorderSide(
+                  color: MyColors.primary,
+                ),
               ),
-              hintStyle: TextStyle(
-                color: Colors.white.withOpacity(0.7),
+              hintStyle: GoogleFonts.cairo(
+                textStyle: TextStyle(
+                  color: Colors.white.withOpacity(0.7),
+                ),
               ),
             ),
-            scaffoldBackgroundColor: HexColor('333739'),
-            primarySwatch: Colors.deepOrange,
+            scaffoldBackgroundColor: MyColors.secondary,
+            primarySwatch: MyColors.primaryColor,
             appBarTheme: AppBarTheme(
-              backgroundColor: HexColor('333739'),
+              backgroundColor: MyColors.secondary,
               systemOverlayStyle: SystemUiOverlayStyle(
-                statusBarColor: HexColor('333739'),
+                statusBarColor: MyColors.secondary,
                 statusBarIconBrightness: Brightness.light,
               ),
               elevation: 0,
@@ -120,15 +128,15 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               iconTheme: IconThemeData(
-                color: Colors.white,
+                color: Colors.white.withOpacity(0.7),
               ),
             ),
             bottomNavigationBarTheme: BottomNavigationBarThemeData(
               type: BottomNavigationBarType.fixed,
-              selectedItemColor: Colors.deepOrange,
-              unselectedItemColor: Colors.white.withOpacity(0.7),
+              selectedItemColor: MyColors.primary,
+              unselectedItemColor: Colors.white.withOpacity(0.6),
               elevation: 20,
-              backgroundColor: HexColor('333739'),
+              backgroundColor: MyColors.secondary,
               selectedLabelStyle: GoogleFonts.cairo(
                 textStyle: TextStyle(
                   fontSize: 16,
@@ -146,8 +154,8 @@ class MyApp extends StatelessWidget {
               bodyText1: GoogleFonts.cairo(
                 textStyle: TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white.withOpacity(0.9),
                 ),
               ),
             ),
