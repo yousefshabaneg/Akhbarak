@@ -26,12 +26,6 @@ class SearchScreen extends StatelessWidget {
             centerTitle: true,
             title: Text(
               'Akhbarak - أخبارك',
-              style: GoogleFonts.cairo(
-                textStyle: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: MyColors.primary,
-                ),
-              ),
             ),
             leading: IconButton(
               icon: Icon(

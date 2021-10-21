@@ -29,15 +29,7 @@ class NewsLayout extends StatelessWidget {
                 Icons.change_circle_outlined,
               ),
             ),
-            title: Text(
-              cubit.isRtl ? 'أخبارك - Akhbarak' : 'Akhbarak - أخبارك',
-              style: GoogleFonts.cairo(
-                textStyle: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: MyColors.primary,
-                ),
-              ),
-            ),
+            title: appBarText(context),
             actions: [
               IconButton(
                   onPressed: () {

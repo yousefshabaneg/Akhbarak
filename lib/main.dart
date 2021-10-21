@@ -70,10 +70,12 @@ class MyApp extends StatelessWidget {
                 statusBarIconBrightness: Brightness.dark,
               ),
               elevation: 0,
-              titleTextStyle: TextStyle(
-                color: MyColors.secondary,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+              titleTextStyle: GoogleFonts.kufam(
+                textStyle: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: MyColors.primary,
+                ),
               ),
               iconTheme: IconThemeData(
                 color: MyColors.secondary,
@@ -122,10 +124,12 @@ class MyApp extends StatelessWidget {
                 statusBarIconBrightness: Brightness.light,
               ),
               elevation: 0,
-              titleTextStyle: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+              titleTextStyle: GoogleFonts.kufam(
+                textStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: MyColors.primary,
+                  fontSize: 20,
+                ),
               ),
               iconTheme: IconThemeData(
                 color: Colors.white.withOpacity(0.7),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/business_logic/news_cubit/NewsCubit.dart';
+import 'package:news_app/shared/components/components.dart';
 import 'package:news_app/shared/constants/my_colors.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -13,17 +14,7 @@ class WebViewScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          NewsCubit.get(context).isRtl
-              ? 'أخبارك - Akhbarak'
-              : 'Akhbarak - أخبارك',
-          style: GoogleFonts.cairo(
-            textStyle: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: MyColors.primary,
-            ),
-          ),
-        ),
+        title: appBarText(context),
       ),
       body: WebView(
         initialUrl: url,

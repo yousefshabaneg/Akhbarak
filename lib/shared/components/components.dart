@@ -25,6 +25,11 @@ Widget buildArticleItem(Article article, context) => InkWell(
                   width: 120,
                   height: 120,
                   decoration: BoxDecoration(
+                      border: Border.all(
+                        color: NewsCubit.get(context).isDark
+                            ? Colors.white.withOpacity(0.7)
+                            : MyColors.darkness,
+                      ),
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                         image: NetworkImage(
@@ -67,9 +72,9 @@ Widget buildArticleItem(Article article, context) => InkWell(
                           NewsCubit.get(context).isRtl
                               ? 'إقرأ المزيد'
                               : 'Read More',
-                          style: GoogleFonts.cairo(
+                          style: GoogleFonts.almarai(
                             textStyle: TextStyle(
-                              color: MyColors.primaryColor.shade900,
+                              color: Colors.redAccent,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -164,3 +169,7 @@ Widget defaultFormField({
 
 void navigateTo(context, widget) =>
     Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
+
+Widget appBarText(context) => Text(
+      NewsCubit.get(context).isRtl ? 'أخبارك - Akhbarak' : 'Akhbarak - أخبارك',
+    );
