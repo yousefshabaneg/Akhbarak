@@ -1,4 +1,4 @@
-# news_app
+# Akhbarak - أخبارك
 
 ## News Api with Dark Mode and Changing the Directionality.
 
